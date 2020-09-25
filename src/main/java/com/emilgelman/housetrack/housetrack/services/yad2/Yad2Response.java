@@ -9,12 +9,14 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@Slf4j
 @JsonDeserialize(using = Yad2Response.Deserializer.class)
 @RequiredArgsConstructor
 public class Yad2Response {
@@ -26,6 +28,7 @@ public class Yad2Response {
     public static class FeedItem {
         private String id;
         private Long price;
+        private Long rooms;
         private String city;
         private String neighborhood;
         private String street;
@@ -60,8 +63,21 @@ public class Yad2Response {
                     .city(x.get("city").asText())
                     .neighborhood(x.get("neighborhood").asText())
                     .street(x.get("street").asText())
-                    .price(Long.valueOf(x.get("price").asText().replaceAll("[^\\d.]","")))
+                    .rooms(x.get("Rooms_text").asLong())
+                    .price(parsePrice(x))
                     .build();
+        }
+
+        private Long parsePrice(JsonNode x) {
+            String price = x.get("price").asText();
+            try {
+                return Long.valueOf(price.replaceAll("[^\\d.]", ""));
+            }
+            catch (NumberFormatException ex)
+            {
+                log.warn("Caught exception trying to format price {}", price);
+                return 0L;
+            }
         }
     }
 }
