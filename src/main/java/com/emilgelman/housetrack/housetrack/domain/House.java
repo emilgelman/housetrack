@@ -1,8 +1,9 @@
 package com.emilgelman.housetrack.housetrack.domain;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+
+import java.util.Objects;
 
 @Data
 @Builder
@@ -14,4 +15,19 @@ public class House {
     private String neighborhood;
     private String street;
     private Long rooms;
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof House))
+        {
+            return false;
+        }
+        return this.id.equals(((House) other).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

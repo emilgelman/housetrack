@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -22,7 +23,7 @@ public class Yad2Controller {
     private final HousetrackProperties properties;
 
     @GetMapping(path = "/yad2")
-    public List<House> get(@RequestParam Map<String,String> params)
+    public Set<House> get(@RequestParam Map<String,String> params)
     {
         log.info("Received new yad2 get request");
         HouseRetrievalRequest request = HouseRetrievalRequest.builder()

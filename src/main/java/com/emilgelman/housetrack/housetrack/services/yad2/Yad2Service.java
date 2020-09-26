@@ -15,8 +15,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +27,7 @@ public class Yad2Service implements DataSourceService {
     private final ObjectMapper objectMapper;
 
     @Override
-    public List<House> retrieve(HouseRetrievalRequest houseRetrievalRequest) {
+    public Set<House> retrieve(HouseRetrievalRequest houseRetrievalRequest) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("accept", "application/json, text/plain, */*");
         headers.add("accept-language", "en-US,en;q=0.9");
@@ -48,12 +48,12 @@ public class Yad2Service implements DataSourceService {
             Yad2Response yad2Response = objectMapper.readValue(response.getBody(), Yad2Response.class);
             return yad2Response.getItems().stream()
                     .map(this::createHouse)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return Collections.emptyList();
+        return Collections.emptySet();
     }
 
     private Map<String, String> convertRequest(HouseRetrievalRequest houseRetrievalRequest) {

@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -21,7 +21,7 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class Yad2Response {
     @Getter
-    private final List<FeedItem> items;
+    private final Set<FeedItem> items;
 
     @Getter
     @Builder
@@ -50,10 +50,10 @@ public class Yad2Response {
             JsonNode node = jp.getCodec().readTree(jp);
             JsonNode jsonNode = node.get("feed").get("feed_items");
 
-            List<FeedItem> feedItems = StreamSupport.stream(jsonNode.spliterator(), false)
+            Set<FeedItem> feedItems = StreamSupport.stream(jsonNode.spliterator(), false)
                     .filter(x -> x.get("type").asText().equals("ad"))
                     .map(this::createFeedItem)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toSet());
             return new Yad2Response(feedItems);
         }
 

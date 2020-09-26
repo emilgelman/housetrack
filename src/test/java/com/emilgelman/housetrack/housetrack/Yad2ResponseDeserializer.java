@@ -3,14 +3,12 @@ package com.emilgelman.housetrack.housetrack;
 import com.emilgelman.housetrack.housetrack.services.yad2.Yad2Response;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
-class Yad2ResponseDeserializer {
+class Yad2ResponseDeserializer extends AbstractIntegTestBase {
 
 	@Test
 	void deserialize() throws Exception{
@@ -1020,7 +1018,7 @@ class Yad2ResponseDeserializer {
 				"}";
 		ObjectMapper objectMapper = new ObjectMapper();
 		Yad2Response yad2Response = objectMapper.readValue(data, Yad2Response.class);
-		List<Yad2Response.FeedItem> items = yad2Response.getItems();
+		Set<Yad2Response.FeedItem> items = yad2Response.getItems();
 		assertThat(items.size()).isEqualTo(2);
 	}
 

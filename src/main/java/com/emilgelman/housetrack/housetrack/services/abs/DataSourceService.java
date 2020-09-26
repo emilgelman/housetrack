@@ -3,8 +3,8 @@ package com.emilgelman.housetrack.housetrack.services.abs;
 import com.emilgelman.housetrack.housetrack.domain.House;
 import com.emilgelman.housetrack.housetrack.domain.HouseRetrievalRequest;
 
-import java.util.List;
+import java.util.Set;
 
 public interface DataSourceService {
-    List<House> retrieve(HouseRetrievalRequest houseRetrievalRequest);
+    Set<House> retrieve(HouseRetrievalRequest houseRetrievalRequest);
 }

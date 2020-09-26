@@ -32,4 +32,8 @@ public class AlertService {
     public void deleteAll() {
         repository.deleteAll();
     }
+
+    public void save(Alert alert) {
+        repository.save(alert);
+    }
 }

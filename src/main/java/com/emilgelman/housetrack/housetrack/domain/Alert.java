@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -18,5 +19,6 @@ public class Alert {
     private Long roomsTo;
     private Long priceFrom;
     private Long priceTo;
-    private List<House> houses;
+    @Builder.Default
+    private Set<House> houses = new HashSet<>();
 }
