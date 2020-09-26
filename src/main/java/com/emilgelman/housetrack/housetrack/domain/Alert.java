@@ -1,17 +1,22 @@
 package com.emilgelman.housetrack.housetrack.domain;
 
+
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 @Data
 @Builder
-public class House {
+public class Alert {
     @Id
     private String id;
-    private Long price;
     private String city;
     private String neighborhood;
-    private String street;
-    private Long rooms;
+    private Long roomsFrom;
+    private Long roomsTo;
+    private Long priceFrom;
+    private Long priceTo;
+    private List<House> houses;
 }
