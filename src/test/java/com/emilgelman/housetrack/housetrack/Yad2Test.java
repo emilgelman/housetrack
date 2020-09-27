@@ -19,10 +19,6 @@ import static org.mockito.Mockito.when;
 
 public class Yad2Test extends AbstractIntegTestBase{
 
-
-    @Autowired
-    AlertRepository alertRepository;
-
     @Autowired
     AlertUpdater alertUpdater;
 
@@ -32,7 +28,6 @@ public class Yad2Test extends AbstractIntegTestBase{
     @BeforeEach
     public void setUp()
     {
-        alertRepository.deleteAll();
         alertRepository.save(alert);
     }
 

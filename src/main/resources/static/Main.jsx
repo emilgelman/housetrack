@@ -1,18 +1,62 @@
-import React, {Component} from "react";
-import ReactDOM from 'react-dom';
+import React, {useEffect} from 'react';
+import {makeStyles} from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import BasicTable from "./Table";
 
-class Main extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Demo Component</h1>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"/>
-            </div>
-        );
+const useStyles = makeStyles({
+    root: {
+        flexGrow: 1,
+    },
+});
+
+export default function Main() {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+    const [alerts, setAlerts] = React.useState([]);
+    const [currentAlert, setCurrentAlert] = React.useState({});
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+        setCurrentAlert(alerts[newValue]);
+    };
+
+    async function fetchData() {
+        const res = await fetch("/api/alerts");
+        res
+            .json()
+            .then(res => {
+                console.log(res);
+                setAlerts(res);
+            })
     }
-}
 
-ReactDOM.render(
-    <Main/>,
-    document.getElementById('react-mountpoint')
-);
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    return (
+        <div>
+            <Paper className={classes.root}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    centered
+                >
+                    {alerts && alerts.map(alert => {
+                        return <Tab
+                            key={alert.id}
+                            label={alert.city + ' ' + alert.neighborhood}
+                        />
+                    })};
+                </Tabs>
+            </Paper>
+
+            {currentAlert && currentAlert.houses && <BasicTable rows={currentAlert.houses}>
+            </BasicTable> }
+        </div>
+    );
+}

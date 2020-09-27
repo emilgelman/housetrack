@@ -49,7 +49,7 @@ task buildReactApp(type: NodeTask, dependsOn: 'npmInstall') {
 	script = project.file('./node_modules/webpack/bin/webpack.js')
 	args = [
 			'--mode', 'development',
-			'--entry', './src/main/resources/static/Main.jsx',
+			'--entry', './src/main/resources/static/App.jsx',
 			'-o', './src/main/resources/static/dist/react-app.js'
 	]
 }
