@@ -3,6 +3,7 @@ package com.emilgelman.housetrack.housetrack.domain;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import java.util.HashSet;
@@ -20,5 +21,7 @@ public class Alert {
     private Long priceFrom;
     private Long priceTo;
     @Builder.Default
+    @ToString.Exclude
     private Set<House> houses = new HashSet<>();
+
 }
