@@ -37,7 +37,7 @@ public class AlertUpdater {
             }
         }
 
-        log.info("There are {} new houses", newHouses.size());
+        log.info("There are {} new houses for alert {}", newHouses.size(), alert);
         alert.setHouses(houses);
     }
 }

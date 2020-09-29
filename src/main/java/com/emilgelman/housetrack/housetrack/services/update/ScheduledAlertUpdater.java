@@ -21,7 +21,7 @@ public class ScheduledAlertUpdater {
     private final AlertUpdater alertUpdater;
     private final AlertService alertService;
 
-    @Scheduled(fixedDelay = 1000L * 60L) //1 min
+    @Scheduled(fixedDelay = 10000L * 60L) //10 min
     public void update() {
         List<Alert> alerts = alertService.getAlerts();
         alerts.forEach(alertUpdater::processAlert);
