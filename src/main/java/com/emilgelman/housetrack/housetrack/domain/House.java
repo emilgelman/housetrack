@@ -15,6 +15,7 @@ public class House {
     private String neighborhood;
     private String street;
     private Long rooms;
+    private SellerType sellerType;
 
     @Override
     public boolean equals(Object other)

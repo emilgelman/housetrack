@@ -13,6 +13,7 @@ const columns = [
     {field: 'street', headerName: 'Street',width: 200},
     {field: 'rooms', headerName: 'Rooms', type: 'number',width: 200},
     {field: 'price', headerName: 'Price', type: 'number',width: 200},
+    {field: 'sellerType', headerName: 'Seller type', width: 150},
 ];
 
 

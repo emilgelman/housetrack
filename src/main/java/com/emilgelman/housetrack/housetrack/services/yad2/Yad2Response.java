@@ -1,5 +1,6 @@
 package com.emilgelman.housetrack.housetrack.services.yad2;
 
+import com.emilgelman.housetrack.housetrack.domain.SellerType;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -32,6 +33,7 @@ public class Yad2Response {
         private String city;
         private String neighborhood;
         private String street;
+        private SellerType sellerType;
 
     }
 
@@ -65,6 +67,7 @@ public class Yad2Response {
                     .street(x.get("street").asText())
                     .rooms(x.get("Rooms_text").asLong())
                     .price(parsePrice(x))
+                    .sellerType(SellerType.from(x.get("merchant").asBoolean()))
                     .build();
         }
 
