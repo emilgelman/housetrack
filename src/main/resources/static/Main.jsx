@@ -3,7 +3,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import BasicTable from "./Table";
+import DataTable from "./DataTable";
+
 
 const useStyles = makeStyles({
     root: {
@@ -55,8 +56,8 @@ export default function Main() {
                 </Tabs>
             </Paper>
 
-            {currentAlert && currentAlert.houses && <BasicTable rows={currentAlert.houses}>
-            </BasicTable> }
+            {currentAlert && currentAlert.houses &&
+                <DataTable rows={currentAlert.houses}/>}
         </div>
     );
 }
