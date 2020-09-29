@@ -12,9 +12,17 @@ const columns = [
 
 
 export default function DataTable(rows) {
+
+    const handleCellClick = (event) => {
+        if (event.field === "id")
+        {
+            window.open("http://www.yad2.co.il/item/" + event.value, "_blank");
+        }
+    };
+
     return (
         <div style={{height: 800, width: '100%'}}>
-            <DataGrid rows={rows.rows} columns={columns} pageSize={20}/>
+            <DataGrid rows={rows.rows} columns={columns} pageSize={20} onCellClick={handleCellClick}/>
         </div>
     );
 }
