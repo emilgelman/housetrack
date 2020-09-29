@@ -75,6 +75,7 @@ public class Yad2Service implements DataSourceService {
                 .price(x.getPrice())
                 .street(x.getStreet())
                 .sellerType(x.getSellerType())
+                .dateAdded(x.getDateAdded())
                 .build();
     }
 }

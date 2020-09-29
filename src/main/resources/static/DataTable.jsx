@@ -14,6 +14,7 @@ const columns = [
     {field: 'rooms', headerName: 'Rooms', type: 'number',width: 200},
     {field: 'price', headerName: 'Price', type: 'number',width: 200},
     {field: 'sellerType', headerName: 'Seller type', width: 150},
+    {field: 'dateAdded', headerName: 'Date added', width: 150},
 ];
 
 

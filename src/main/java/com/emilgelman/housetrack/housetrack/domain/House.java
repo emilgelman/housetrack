@@ -3,6 +3,7 @@ package com.emilgelman.housetrack.housetrack.domain;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Data
@@ -16,6 +17,7 @@ public class House {
     private String street;
     private Long rooms;
     private SellerType sellerType;
+    private LocalDate dateAdded;
 
     @Override
     public boolean equals(Object other)

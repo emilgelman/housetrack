@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,6 +36,7 @@ public class Yad2Response {
         private String neighborhood;
         private String street;
         private SellerType sellerType;
+        private LocalDate dateAdded;
 
     }
 
@@ -68,6 +71,7 @@ public class Yad2Response {
                     .rooms(x.get("Rooms_text").asLong())
                     .price(parsePrice(x))
                     .sellerType(SellerType.from(x.get("merchant").asBoolean()))
+                    .dateAdded(LocalDateTime.parse(x.get("date_added").asText().replace(" ","T")).toLocalDate())
                     .build();
         }
 
