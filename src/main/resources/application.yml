@@ -1,6 +1,9 @@
 house-track:
+  scheduled:
+    enabled: true
   yad2:
     cities:
       haifa: 4000
     neighborhoods:
       savyoni-hacarmel: 634
+      neot-peres: 607
