@@ -57,7 +57,14 @@ export default function Main() {
             </Paper>
 
             {currentAlert && currentAlert.houses &&
-                <DataTable rows={currentAlert.houses}/>}
+                <div>
+                <h1>Showing results for {currentAlert.city} {currentAlert.neighborhood}{" "}
+                    rooms: {currentAlert.roomsFrom}-{currentAlert.roomsTo}{" "}
+                    price: {currentAlert.priceFrom}-{currentAlert.priceTo}
+                </h1>
+                <DataTable rows={currentAlert.houses}/>
+                </div>
+            }
         </div>
     );
 }
