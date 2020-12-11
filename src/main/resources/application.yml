@@ -4,6 +4,8 @@ house-track:
   yad2:
     cities:
       haifa: 4000
+      kiryat-mozkin: 8200
     neighborhoods:
       savyoni-hacarmel: 634
       neot-peres: 607
+      mishkenot-omanim: 458

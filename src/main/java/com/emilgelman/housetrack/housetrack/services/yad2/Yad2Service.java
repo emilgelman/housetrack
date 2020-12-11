@@ -72,6 +72,8 @@ public class Yad2Service implements DataSourceService {
                 .neighborhood(x.getNeighborhood())
                 .street(x.getStreet())
                 .rooms(x.getRooms())
+                .squareMeters(x.getSquareMeters())
+                .floor(x.getFloor())
                 .price(x.getPrice())
                 .street(x.getStreet())
                 .sellerType(x.getSellerType())

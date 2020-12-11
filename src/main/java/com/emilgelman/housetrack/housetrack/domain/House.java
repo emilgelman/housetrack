@@ -16,6 +16,8 @@ public class House {
     private String neighborhood;
     private String street;
     private Long rooms;
+    private Long squareMeters;
+    private Long floor;
     private SellerType sellerType;
     private LocalDate dateAdded;
 

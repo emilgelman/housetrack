@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -32,6 +33,8 @@ public class Yad2Response {
         private String id;
         private Long price;
         private Long rooms;
+        private Long squareMeters;
+        private Long floor;
         private String city;
         private String neighborhood;
         private String street;
@@ -70,6 +73,8 @@ public class Yad2Response {
                     .street(x.get("street").asText())
                     .rooms(x.get("Rooms_text").asLong())
                     .price(parsePrice(x))
+                    .floor(parseFloor(x))
+                    .squareMeters(x.get("square_meters").asLong())
                     .sellerType(SellerType.from(x.get("merchant").asBoolean()))
                     .dateAdded(LocalDateTime.parse(x.get("date_added").asText().replace(" ","T")).toLocalDate())
                     .build();
@@ -85,6 +90,13 @@ public class Yad2Response {
                 log.warn("Caught exception trying to format price {}", price);
                 return 0L;
             }
+        }
+
+        private Long parseFloor(JsonNode x) {
+            return Optional.ofNullable(x.get("row_4"))
+                    .map(n -> n.get(1))
+                    .map(n -> n.get("value").asLong())
+                    .orElse(0L);
         }
     }
 }
