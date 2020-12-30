@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -70,7 +71,7 @@ public class Yad2Response {
                     .id(x.get("id").asText())
                     .city(x.get("city").asText())
                     .neighborhood(x.get("neighborhood").asText())
-                    .street(x.get("street").asText())
+                    .street(parseStreet(x))
                     .rooms(x.get("Rooms_text").asLong())
                     .price(parsePrice(x))
                     .floor(parseFloor(x))
@@ -78,6 +79,12 @@ public class Yad2Response {
                     .sellerType(SellerType.from(x.get("merchant").asBoolean()))
                     .dateAdded(LocalDateTime.parse(x.get("date_added").asText().replace(" ","T")).toLocalDate())
                     .build();
+        }
+
+        private String parseStreet(JsonNode x) {
+            return Optional.ofNullable(x.get("street"))
+                    .map(JsonNode::asText)
+                    .orElse(Strings.EMPTY);
         }
 
         private Long parsePrice(JsonNode x) {
