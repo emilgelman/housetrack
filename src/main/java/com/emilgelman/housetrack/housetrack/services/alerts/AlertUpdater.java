@@ -22,6 +22,7 @@ public class AlertUpdater {
     private final AlertToYad2RequestConverter alertToYad2RequestConverter;
 
     public void processAlert(Alert alert) {
+        log.info("Processing alert {}", alert);
         HouseRetrievalRequest request = alertToYad2RequestConverter.convert(alert);
         Set<House> houses = yad2Service.retrieve(request);
         updateAlertHouses(alert, houses);

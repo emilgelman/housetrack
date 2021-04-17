@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Data
 @Builder
+@ToString
 public class Alert {
     @Id
     private String id;
