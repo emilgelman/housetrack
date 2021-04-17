@@ -15,6 +15,7 @@ const columns = [
     {field: 'floor', headerName: 'Floor', type: 'number',width: 200},
     {field: 'squareMeters', headerName: 'Square Meters', type: 'number',width: 200},
     {field: 'price', headerName: 'Price', type: 'number',width: 200},
+    {field: 'parking', headerName: 'Parking', type: 'number',width: 200},
     {field: 'sellerType', headerName: 'Seller type', width: 150},
     {field: 'dateAdded', headerName: 'Date added', width: 150},
 ];

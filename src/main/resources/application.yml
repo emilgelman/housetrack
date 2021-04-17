@@ -7,6 +7,13 @@ house-track:
       kiryat-mozkin: 8200
     neighborhoods:
       savyoni-hacarmel: 634
+      ramat-alon: 635
+      ramat-chen: 640
       neot-peres: 607
       mishkenot-omanim: 458
       vardia: 627
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}

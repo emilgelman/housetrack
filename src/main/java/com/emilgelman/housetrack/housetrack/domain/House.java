@@ -12,6 +12,7 @@ public class House {
     @Id
     private String id;
     private Long price;
+    private Long parking;
     private String city;
     private String neighborhood;
     private String street;
