@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 
 @Slf4j
@@ -25,8 +24,7 @@ public class ScheduledAlertUpdater {
     @Scheduled(fixedDelay = 3600000L) //1 hour
     public void update() {
         List<Alert> alerts = alertService.getAlerts();
-        Alert alert = alerts.get(new Random().nextInt(alerts.size()));
-        alertUpdater.processAlert(alert);
+        alerts.forEach(alertUpdater::processAlert);
     }
 
 }
