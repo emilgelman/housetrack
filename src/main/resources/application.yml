@@ -14,6 +14,8 @@ house-track:
       vardia: 627
       ahuza: 613
       almogi: 636
+      begin: 615
+      golda: 631
 
 spring:
   data:
